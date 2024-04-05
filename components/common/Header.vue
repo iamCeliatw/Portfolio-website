@@ -10,17 +10,17 @@
 </template>
 
 <script lang="ts" setup>
-import { useStore } from "../stores/index";
-const store = useStore();
-const route = useRoute();
+import { useStore } from '../stores/index'
+const store = useStore()
+const route = useRoute()
 const headerList = ref([
-  { name: "Home", link: "/" },
-  { name: "About", link: "/about" },
-  { name: "Portfolio", link: "/portfolio" },
-  { name: "Contact", link: "/contact" },
-]);
+  { name: 'Home', link: '/' },
+  { name: 'About', link: '/about' },
+  { name: 'Portfolio', link: '/portfolio' },
+  { name: 'Contact', link: '/contact' },
+])
 
-onMounted(() => {});
+onMounted(() => {})
 </script>
 
 <style lang="sass" scoped>
@@ -28,6 +28,7 @@ onMounted(() => {});
 .header__wrapper
   width: 100%
   position: fixed
+  background: #ffffff
 .header__container
   width: 100%
   padding:  20px

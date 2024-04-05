@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { mkdirSync } from 'node:fs';
 import { parentPort, threadId } from 'node:worker_threads';
 import { defineEventHandler, handleCacheHeaders, splitCookiesString, isEvent, createEvent, fetchWithEvent, getRequestHeader, eventHandler, setHeaders, sendRedirect, proxyRequest, createError, setResponseHeader, send, getResponseStatus, setResponseStatus, setResponseHeaders, getRequestHeaders, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getRouterParam, getQuery as getQuery$1, readBody, getResponseStatusText } from 'file:///Users/shuting/Desktop/Portfolio-website/node_modules/h3/dist/index.mjs';
+import { sql } from 'file:///Users/shuting/Desktop/Portfolio-website/node_modules/@vercel/postgres/dist/index-node.js';
 import { getRequestDependencies, getPreloadLinks, getPrefetchLinks, createRenderer } from 'file:///Users/shuting/Desktop/Portfolio-website/node_modules/vue-bundle-renderer/dist/runtime.mjs';
 import { stringify, uneval } from 'file:///Users/shuting/Desktop/Portfolio-website/node_modules/devalue/index.js';
 import destr from 'file:///Users/shuting/Desktop/Portfolio-website/node_modules/destr/dist/index.mjs';
@@ -813,9 +814,13 @@ const errorHandler = (async function errorhandler(error, event) {
   return send(event, html);
 });
 
+const _lazy_tWvu9y = () => Promise.resolve().then(function () { return createContactTable$1; });
+const _lazy_WLvkie = () => Promise.resolve().then(function () { return createContact$1; });
 const _lazy_fTlVlD = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
+  { route: '/api/create-contact-table', handler: _lazy_tWvu9y, lazy: true, middleware: false, method: undefined },
+  { route: '/api/create-contact', handler: _lazy_WLvkie, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_error', handler: _lazy_fTlVlD, lazy: true, middleware: false, method: undefined },
   { route: '/**', handler: _lazy_fTlVlD, lazy: true, middleware: false, method: undefined }
 ];
@@ -1025,6 +1030,41 @@ const template$1 = _template;
 const errorDev = /*#__PURE__*/Object.freeze({
   __proto__: null,
   template: template$1
+});
+
+const createContactTable = defineEventHandler(async (event) => {
+  try {
+    const result = await sql`CREATE TABLE IF NOT EXISTS Contact ( Name varchar(255), Email varchar(255), Message varchar(255) );`;
+    event.res.statusCode = 200;
+    return { result };
+  } catch (error) {
+    event.res.statusCode = 500;
+    return { error: error.message };
+  }
+});
+
+const createContactTable$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: createContactTable
+});
+
+const createContact = defineEventHandler(async (event) => {
+  const body = await readBody(event);
+  try {
+    const result = await sql`
+      INSERT INTO Contact (Name, Email, Message)
+      VALUES (${body.name}, ${body.email}, ${body.message})
+    `;
+    return { success: true, message: "Data inserted successfully", result };
+  } catch (error) {
+    event.res.statusCode = 500;
+    return { success: false, message: error.message };
+  }
+});
+
+const createContact$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  default: createContact
 });
 
 const Vue3 = version.startsWith("3");
