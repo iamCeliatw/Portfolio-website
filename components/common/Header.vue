@@ -29,6 +29,7 @@ onMounted(() => {})
   width: 100%
   position: fixed
   background: #ffffff
+  z-index: 999
 .header__container
   width: 100%
   padding:  20px

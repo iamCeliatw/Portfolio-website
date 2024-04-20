@@ -14,6 +14,7 @@ div.custom__wrapper
   width: 100%
   height: 100%
   background: #f9f9f9
+  min-height: 100vh
   // height: calc(100% - 90px)
   // border: 1px solid green
 </style>

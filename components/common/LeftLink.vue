@@ -19,10 +19,14 @@
 <script lang="ts" setup></script>
 
 <style lang="sass" scoped>
+@import "@/assets/styles/mixin.sass"
+
 .leftlink__wrapper
   position: fixed
   bottom: 45px
   left: 45px
+  @include md-breakpoint
+    display: none
 .leftlink__container
   width: 50px
   display: flex

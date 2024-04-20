@@ -8,10 +8,13 @@
 <script lang="ts" setup></script>
 
 <style lang="sass" scoped>
+@import "@/assets/styles/mixin.sass"
 .rightemail__wrapper
   position: fixed
   right: 45px
   bottom: 45px
+  @include md-breakpoint
+    display: none
   p
     writing-mode: vertical-rl
     color: #8284BA

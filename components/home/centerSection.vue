@@ -15,8 +15,6 @@ section.centersection__wrapper
             a(href="#") ABOUT ME
     .intro__image
       img(src='@/assets/avatar.png', alt='avatar')
-
-
 </template>
 
 <script lang="ts" setup>
@@ -67,10 +65,10 @@ onMounted(() => {
 <style lang="sass" scoped>
 .centersection__wrapper
   width: 750px
-  height: 100vh
   margin: auto
   position: relative
-  overflow: hidden
+  min-height: 100vh
+  height: auto
 .centersection__container
   position: absolute
   width: 100%
@@ -79,22 +77,16 @@ onMounted(() => {
   transform: translate(-50%, -50%)
   display: flex
   gap: 30px
-
 .intro__image
-  // border-radius: 50%
-  // width: 100%
   width: 320px
   height: 320px
   img
     width: 100%
     height: 100%
-    // border-radius: 50%
     display: block
 .intro__textfield
   flex: 1
   display: flex
-  // justify-items: flex
-  // justify-content: flex-end
   align-items: center
 .textfield__container
   display: flex
