@@ -57,7 +57,10 @@ const startTyping = () => {
 }
 onMounted(() => {
   typedSpan = document.getElementById('typed')
-  startTyping()
+  if (typedSpan) {
+    typedSpan.textContent = ''
+    startTyping()
+  }
 })
 </script>
 
