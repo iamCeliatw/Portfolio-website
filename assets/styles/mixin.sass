@@ -1,3 +1,4 @@
+$xxsBreakpoint: 414px
 $xsBreakpoint: 576px
 $smBreakpoint: 768px
 $mdBreakpoint: 1024px
@@ -9,25 +10,29 @@ $xlBreakpoint: 1440px
   @media only screen and (max-width: $xsBreakpoint)
     @content
 
+@mixin xxs-breakpoint 
+  @media only screen and (max-width: $xxsBreakpoint)
+    @content
+
 
 
 @mixin sm-breakpoint 
-  @media only screen and (min-width: $smBreakpoint)
+  @media only screen and (max-width: $smBreakpoint)
     @content
 
 
 @mixin md-breakpoint 
-  @media only screen and (min-width: $mdBreakpoint)
+  @media only screen and (max-width: $mdBreakpoint)
     @content
 
 
 @mixin lg-breakpoint 
-  @media only screen and (min-width: $lgBreakpoint)
+  @media only screen and (max-width: $lgBreakpoint)
     @content
 
 
 @mixin xl-breakpoint 
-  @media only screen and (min-width: $xlBreakpoint)
+  @media only screen and (max-width: $xlBreakpoint)
     @content
 
 @mixin active-link-style($isActive) 

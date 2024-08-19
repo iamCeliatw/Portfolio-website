@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
+    "@vercel/node": "^3.0.26",
+    "@vercel/postgres": "^0.8.0",
     "nuxt": "^3.11.1",
     "pinia": "^2.1.7",
     "pug": "^3.0.2",
