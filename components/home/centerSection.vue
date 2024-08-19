@@ -3,18 +3,17 @@ section.centersection__wrapper
  .centersection__container 
     .intro__textfield 
       .textfield__container
-        h3.title Hi👋🏻, My name is 
-        h1.name Celia 
+        h3.title {{'Hi👋🏻, My name is '}}
+        h1.name {{'Celia'}} 
         .marquee__container 
-          .effect-wrapper I'm a 
+          .effect-wrapper {{"I'm a "}}
             span#typed
             span.cursor &nbsp;
-        p.desc Constantly focused on learning and expanding my expertise, crafting ever-improving, high-performing solutions.
-        .button__container 
-          button 
-            a(href="#") ABOUT ME
+        p.desc {{ 'Constantly focused on learning and expanding my expertise, crafting ever-improving, high-performing solutions.' }}
+        .button__container
+          button(@click="navigateTo('/about')") {{'ABOUT ME'}}
     .intro__image
-      img(src='@/assets/avatar.png', alt='avatar')
+      img(src='@/assets/avatar.webp', alt='avatar')
 </template>
 
 <script lang="ts" setup>
@@ -63,12 +62,15 @@ onMounted(() => {
 </script>
 
 <style lang="sass" scoped>
+@import '@/assets/styles/mixin.sass'
 .centersection__wrapper
   width: 750px
   margin: auto
   position: relative
   min-height: 100vh
   height: auto
+  @include xxs-breakpoint
+    width: 100%
 .centersection__container
   position: absolute
   width: 100%
@@ -77,13 +79,19 @@ onMounted(() => {
   transform: translate(-50%, -50%)
   display: flex
   gap: 30px
+
 .intro__image
   width: 320px
   height: 320px
+  border-radius: 50%
+  overflow: hidden
   img
+    scale: 1.2
     width: 100%
     height: 100%
     display: block
+  @include xxs-breakpoint
+    display: none
 .intro__textfield
   flex: 1
   display: flex
@@ -92,11 +100,20 @@ onMounted(() => {
   display: flex
   justify-content: flex-end
   flex-direction: column
-
+  @include xxs-breakpoint
+  padding: 10px
   h1,h2,h3,p
     text-align: right
+    @include xxs-breakpoint
+      text-align: left
   .button__container
     align-self: flex-end
+    button
+      border: none
+      cursor: pointer
+      transition: background 0.3s ease
+      &:hover
+        background: rgba(124, 124, 179, 0.8)
 .title
   color:#262626
   font-weight: 400
@@ -113,7 +130,8 @@ onMounted(() => {
   justify-content: flex-end
   align-items: center
   font-size: 1.2rem
-
+  @include xxs-breakpoint
+    justify-content: flex-start
 
 .effect-wrapper
   text-align: center
@@ -136,16 +154,13 @@ onMounted(() => {
   color: #737373
 .button__container
   margin-top: 10px
-  a
-    text-decoration: none
-    color: #ffffff
-    word-spacing: 5px
   button
     --tw-bg-opacity: 1
     font-weight: 900
     background-color: rgb(124 124 179 / var(--tw-bg-opacity))
     border-radius: 20px
-    padding: 4px 8px
+    padding: 6px 12px
+    color: #ffffff
     &:hover
       background-color: rgb(91 91 174 / var(--tw-bg-opacity))
 

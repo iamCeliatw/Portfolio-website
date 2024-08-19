@@ -17,6 +17,14 @@
           span message
           textarea(v-model="formData.message" placeholder="What would you like to ask me?" required cols="15" rows="10" )
         button.send__button(type="submit") Send Message 
+  // popup
+  .send__popup(v-if="openPopup")
+    .popup__container
+      .popup__title
+        h1 Success
+        p Your message has been sent successfully, I will get back to you as soon as possible.
+      .popup__button
+        button(type="button" @click="() => openPopup = false") Close
 </template>
 
 <script setup lang="ts">
@@ -27,7 +35,7 @@ const formData = ref({
   email: '',
   message: '',
 })
-
+const openPopup = ref(true)
 const submitForm = async () => {
   try {
     console.log('formData.value:', formData.value)
@@ -42,10 +50,9 @@ const submitForm = async () => {
     const result = await response.json()
 
     if (result.success) {
-      // 处理成功，例如清空表单，显示成功消息等
       console.log('Success:', result.message)
+      openPopup.value = true
     } else {
-      // 处理错误情况
       console.error('Error:', result.message)
     }
   } catch (error) {
@@ -55,6 +62,7 @@ const submitForm = async () => {
 </script>
 
 <style lang="sass" scoped>
+@import "@/assets/styles/mixin.sass"
 .contact__wrapper
   width: 100%
   margin: auto
@@ -67,6 +75,8 @@ const submitForm = async () => {
     width: 50%
     max-width: 500px
     margin: auto
+    @include xxs-breakpoint
+      width: 100%
 .title
   text-align: center
   h1
@@ -138,4 +148,25 @@ span
   &:hover
     --tw-bg-opacity: 1
     background-color: rgb(91 91 174 / var(--tw-bg-opacity))
+.send__popup
+  position: fixed
+  top: 50
+  left: 0
+  width: 100%
+  height: 100%
+  background: rgba(0, 0, 0, 0.5)
+  .popup__container
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    width: 80%
+    max-width: 500px
+    margin: auto
+    background: white
+    padding: 20px
+    border-radius: 10px
+  .popup__button
+    display: flex
+    justify-content: flex-end
 </style>

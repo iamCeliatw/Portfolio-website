@@ -40,13 +40,19 @@ onMounted(() => {})
   img
     width: 100%
     display: block
-
+  @include xxs-breakpoint
+    display: none
 .header__nav
   display: flex
   align-items: center
   ul
     display: flex
     list-style: none
+    @include xxs-breakpoint
+      justify-content: space-around
+      width: 100%
+  @include xxs-breakpoint
+    width: 100%
 
 .nav__item
   margin-left: 20px
@@ -57,4 +63,6 @@ onMounted(() => {})
     @include active-link-style(false)
     &:hover, &:active, &:focus, &.active
       @include active-link-style(true)
+  @include xxs-breakpoint
+    margin-left: 0
 </style>
