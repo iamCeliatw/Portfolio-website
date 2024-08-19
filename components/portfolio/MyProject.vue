@@ -4,8 +4,8 @@
     .image__container(@click="openSource(project)")
       img(:src="project.image", alt="myproject")
     .text__container
-      h2.title {{ project.title }}
-      h5.desc {{ project.desc }}
+      h3.title {{ project.title }}
+      p.desc {{ project.desc }}
       p.skill__stack
         p.skill__stack__title build with: 
         span(v-for="(skill, key) in project.skillStack" :key="key" @click="openOutsource(skill.link)") {{ skill.name }}
@@ -91,10 +91,12 @@ const openOutsource = (url: string) => {
   display: flex
   flex-direction: column
   gap: 10px
-  h2
+
+  h3
     color: #333333
-  h5
+  p
     color: #737373
+    font-size: 14px
 .skill__stack
   height: fit-content
   span
