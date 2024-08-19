@@ -102,7 +102,10 @@ const skillList = [
   display: grid
   gap: 2rem
   @include xxs-breakpoint
+    padding: 30px
     grid-template-columns: repeat(2, minmax(0, 1fr))
+    gap: 3rem
+
 .skill
   display: flex
   justify-content: center
@@ -112,7 +115,7 @@ const skillList = [
   .image
     width: auto
     height: auto
-    max-height: 76px
+
     img
       width: 100%
       height: 100%

@@ -22,8 +22,8 @@ console.log(route.name)
 const desktopAppList = ref([
   {
     //氫能遊戲for工研院能源所
-    title: 'Hydrogen Energy Game for Industrial Technology Research Institute',
-    desc: 'A simple touch game for children to learn about hydrogen energy',
+    title: 'Hydrogen Energy Game',
+    desc: 'A simple touch game for children to learn about hydrogen energy, made for Industrial Technology Research Institute.',
     skillStack: [
       {
         name: 'Vue.js',
@@ -137,6 +137,8 @@ const projectList = ref([
       grid-template-columns: repeat(2, 1fr)
     @include xs-breakpoint
       grid-template-columns: repeat(1, 1fr)
+      gap: 40px
+      margin-bottom: 60px
 
 
   .portfolio
