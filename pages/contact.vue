@@ -35,7 +35,7 @@ const formData = ref({
   email: '',
   message: '',
 })
-const openPopup = ref(true)
+const openPopup = ref(false)
 const submitForm = async () => {
   try {
     console.log('formData.value:', formData.value)
