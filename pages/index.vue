@@ -1,11 +1,11 @@
 <template lang="pug">
-
+HomeCenterSection
 </template>
 
 <script lang="ts" setup>
-import { useStore } from "../stores/index";
-const store = useStore();
-const route = useRoute();
+import { useStore } from '../stores/index'
+const store = useStore()
+const route = useRoute()
 </script>
 
 <style lang="sass" scoped></style>
