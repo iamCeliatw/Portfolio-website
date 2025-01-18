@@ -1123,7 +1123,7 @@ function createServerHead(options = {}) {
 
 const unheadPlugins = [];
 
-const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[{"rel":"icon","href":"/favicon.png"}],"style":[],"script":[],"noscript":[],"title":"Celia's Portfolio"};
+const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"},{"property":"og:type","content":"website"},{"property":"og:title","content":"Celia's Portfolio"},{"property":"og:description","content":"My portfolio and skill set record."},{"property":"og:image","content":"https://celia-portfolio-website.vercel.app/project/portfolio_project.jpg"},{"property":"og:url","content":"https://yourdomain.com"}],"link":[{"rel":"icon","href":"/favicon.png"}],"style":[],"script":[],"noscript":[],"title":"Celia's Portfolio"};
 
 const appRootId = "__nuxt";
 
