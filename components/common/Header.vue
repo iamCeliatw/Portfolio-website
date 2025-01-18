@@ -35,6 +35,8 @@ onMounted(() => {})
   padding:  20px
   display: flex
   justify-content: space-between
+  // @include xxs-breakpoint
+
 .header__logo
   width: 200px
   img
