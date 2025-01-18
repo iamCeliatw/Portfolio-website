@@ -3,6 +3,8 @@
   .myproject__container
     .image__container(@click="openSource(project)")
       img(:src="project.image", alt="myproject")
+      .clickhere__container(v-if="desktop")
+        img(src="/project/tap-gesture.gif" alt="click here")
     .text__container
       h3.title {{ project.title }}
       p.desc {{ project.desc }}
@@ -30,6 +32,7 @@ const props = defineProps<{
     url: string
     video: string
   }
+  desktop?: boolean
 }>()
 const openVideo = ref(false)
 const videoRef = ref<HTMLVideoElement | null>(null)
@@ -77,15 +80,33 @@ const openOutsource = (url: string) => {
     padding: 0
 .image__container
   width: 100%
-  height: auto
-  border-radius: 20px
+  height: 100%
+  border-radius: 15px
   cursor: pointer
+  aspect-ratio: 16 / 9
+  position: relative
+  border: 5px solid #8284BA
+  .clickhere__container
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    width: calc(100% + 2px)
+    height: calc(100% + 2px)
+    display: flex
+    justify-content: center
+    align-items: center
+    background: rgba(0, 0, 0, 0.5)
+    border-radius: 10px
+    img
+      width: 45px
+      height: auto
   img
     width: 100%
     height: 100%
     object-fit: cover
-    border-radius: 20px
-    // border: 10px solid #f9f9f9
+    object-position: center
+    border-radius: 10px
     object-position: center
 .text__container
   display: flex

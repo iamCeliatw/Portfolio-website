@@ -38,36 +38,41 @@ const skillList = [
   },
   {
     id: 6,
+    name: 'React',
+    image: '/skill/react-icon.webp',
+  },
+  {
+    id: 7,
     name: 'Nuxt3',
     image: '/skill/nuxt-icon.svg',
   },
   {
-    id: 7,
+    id: 8,
     name: 'Vuetify',
     image: '/skill/vuetify-icon.svg',
   },
   {
-    id: 8,
+    id: 9,
     name: 'Electron',
     image: '/skill/electron-icon.png',
   },
   {
-    id: 9,
+    id: 10,
     name: 'Supabase',
     image: '/skill/supabase-icon.png',
   },
   {
-    id: 10,
+    id: 11,
     name: 'Firebase',
     image: '/skill/firebase-icon.svg',
   },
   {
-    id: 11,
+    id: 12,
     name: 'Git',
     image: '/skill/git-icon.png',
   },
   {
-    id: 12,
+    id: 13,
     name: 'Vercel',
     image: '/skill/vercel-icon.svg',
   },
@@ -104,7 +109,7 @@ const skillList = [
   @include xxs-breakpoint
     padding: 30px
     grid-template-columns: repeat(2, minmax(0, 1fr))
-    gap: 3rem
+    gap: 3rem 1rem
 
 .skill
   display: flex
@@ -115,7 +120,9 @@ const skillList = [
   .image
     width: auto
     height: auto
-
+    @include xxs-breakpoint
+      width: 100px
+      height: auto
     img
       width: 100%
       height: 100%
