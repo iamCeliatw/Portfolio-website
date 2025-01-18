@@ -95,6 +95,22 @@ const projectList = [
     image: '/project/project_3.jpg',
     url: 'https://celia-blog.vercel.app/',
   },
+  {
+    title: 'Portfolio website',
+    desc: 'A portfolio website about my projects and skills',
+    skillStack: [
+      {
+        name: 'Nuxt3',
+        link: 'https://nuxt.com/',
+      },
+      {
+        name: 'TypeScript',
+        link: 'https://www.typescriptlang.org/',
+      },
+    ],
+    image: '/project/portfolio_project.jpg',
+    url: '/',
+  },
 ]
 
 export { desktopAppList, projectList }
