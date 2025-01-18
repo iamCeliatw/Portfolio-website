@@ -104,13 +104,16 @@ onMounted(() => {
   justify-content: flex-end
   flex-direction: column
   @include xxs-breakpoint
-  padding: 10px
+    padding: 25px
+
   h1,h2,h3,p
     text-align: right
     @include xxs-breakpoint
       text-align: left
   .button__container
     align-self: flex-end
+    @include xxs-breakpoint
+      align-self: flex-start
     button
       border: none
       cursor: pointer
