@@ -156,7 +156,7 @@ console.log(route.name)
     gap: 15px
     margin-bottom: 20px
     @include md-breakpoint
-      grid-template-columns: repeat(2, 1fr)
+      grid-template-columns: repeat(1, 1fr)
     @include xs-breakpoint
       grid-template-columns: repeat(1, 1fr)
       gap: 40px
