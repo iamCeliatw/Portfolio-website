@@ -111,6 +111,22 @@ const projectList = [
     image: '/project/portfolio_project.jpg',
     url: '/',
   },
+  {
+    title: 'Dapp Practice',
+    desc: 'A decentralized application for practicing, made with Ether.js and Next.js',
+    skillStack: [
+      {
+        name: 'Next',
+        link: 'https://nextjs.org/',
+      },
+      {
+        name: 'Ether.js',
+        link: 'https://docs.ethers.io/v5/',
+      },
+    ],
+    image: '/project/project_4.jpg',
+    url: 'https://ether-dapp.vercel.app/price',
+  },
 ]
 
 export { desktopAppList, projectList }
