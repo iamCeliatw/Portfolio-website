@@ -127,6 +127,22 @@ const projectList = [
     image: '/project/project_4.jpg',
     url: 'https://ether-dapp.vercel.app/price',
   },
+  {
+    title: 'Paws on Patrol',
+    desc: 'An application for pet owners to find nearby pet sitters and make payments through Stripe, built with React.js and Firebase.',
+    skillStack: [
+      {
+        name: 'React',
+        link: 'https://reactjs.org/',
+      },
+      {
+        name: 'Firebase',
+        link: 'https://firebase.google.com/',
+      },
+    ],
+    image: '/project/project_5.jpg',
+    url: 'https://paws-on-patrol.firebaseapp.com/',
+  },
 ]
 
 export { desktopAppList, projectList }

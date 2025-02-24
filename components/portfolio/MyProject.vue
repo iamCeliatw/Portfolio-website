@@ -1,7 +1,7 @@
 <template lang="pug">
-.myproject__wrapper
+.myproject__wrapper(@click="openSource(project)")
   .myproject__container
-    .image__container(@click="openSource(project)")
+    .image__container
       img(:src="project.image", alt="myproject")
       .clickhere__container(v-if="desktop")
         img(src="/project/tap-gesture.gif" alt="click here")
@@ -10,13 +10,13 @@
       p.desc {{ project.desc }}
       p.skill__stack
         p.skill__stack__title build with: 
-        span(v-for="(skill, key) in project.skillStack" :key="key" @click="openOutsource(skill.link)") {{ skill.name }}
+        span(v-for="(skill, key) in project.skillStack" :key="key" @click.stop="openOutsource(skill.link)") {{ skill.name }}
   teleport(to="body") 
     transition(name="fade")     
       .video__popup(v-if="openVideo")
         p.video__title {{ 'Demo Video' }}
         video(:src="project.video" loop muted ref="videoRef")
-        .close__button(@click="closeVideo" v-if="openVideo") X
+        .close__button(@click.stop="closeVideo" v-if="openVideo") X
 </template>
 
 <script lang="ts" setup>
@@ -68,6 +68,10 @@ const openOutsource = (url: string) => {
 .myproject__wrapper
   width: 100%
   height: 100%
+  cursor: pointer
+  &:hover
+    .image__container
+      border: 5px solid #333333
 
 .myproject__container
   padding: 20px
@@ -80,12 +84,14 @@ const openOutsource = (url: string) => {
     padding: 0
 .image__container
   width: 100%
-  height: 100%
+  height: auto
+  overflow: hidden
   border-radius: 15px
   cursor: pointer
   aspect-ratio: 16 / 9
   position: relative
   border: 5px solid #8284BA
+  transition: all 0.3s ease
   .clickhere__container
     position: absolute
     top: 50%
@@ -105,6 +111,7 @@ const openOutsource = (url: string) => {
     width: 100%
     height: 100%
     object-fit: cover
+    display: block
     object-position: center
     border-radius: 10px
     object-position: center
