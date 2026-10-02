@@ -22,7 +22,17 @@ for (const [device, viewport] of viewports) {
     await page.waitForTimeout(1500)
     await page.evaluate(() => window.scrollTo(0, 0))
     await page.waitForTimeout(800)
-    await page.screenshot({ path: `shots/${round}/${name}-${device}.png`, fullPage: true })
+    if (device === 'mobile') {
+      await page.screenshot({ path: `shots/${round}/${name}-${device}.png`, fullPage: true })
+    } else {
+      // 全頁截圖會把視窗撐到整頁高，WebGL 固定畫布會畫錯；桌機改成逐個視窗截
+      const height = await page.evaluate(() => document.body.scrollHeight)
+      for (let y = 0, i = 0; y < height; y += viewport.height, i++) {
+        await page.evaluate((top) => window.scrollTo(0, top), y)
+        await page.waitForTimeout(700)
+        await page.screenshot({ path: `shots/${round}/${name}-${device}-${String(i).padStart(2, '0')}.png` })
+      }
+    }
   }
   await context.close()
 }
