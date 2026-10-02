@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "title": "Celia | Frontend Engineer",
+    "description": "Celia's portfolio: websites, full-stack apps and 3D experiences.",
+    "liftlogTitle": "LIFTLOG case study | Celia",
+    "liftlogDescription": "How LIFTLOG was built: three roles, a booking state machine and spec-driven development."
+  },
+  "nav": {
+    "aria": "Main",
+    "works": "Works",
+    "tools": "Toolbox",
+    "experience": "Experience",
+    "contact": "Contact",
+    "switchTo": "中",
+    "switchLabel": "切換成中文"
+  },
+  "hero": {
+    "eyebrow": "(00) Frontend Engineer / 前端工程師",
+    "words": [
+      "websites.",
+      "web apps.",
+      "3D worlds."
+    ],
+    "intro": "I build websites, full-stack apps and 3D experiences where every click answers back.",
+    "scroll": "Scroll"
+  },
+  "stage": {
+    "aria": "Featured work",
+    "hello": "Hi, I'm Celia",
+    "featured": "(01) Featured",
+    "previous": "King One Interactive",
+    "side": "Side project",
+    "tests": "21 E2E specs"
+  },
+  "works": {
+    "label": "(01)",
+    "title": "Works",
+    "titleAlt": "selected",
+    "intro": "Personal projects, from a full-stack platform to a handmade brand.",
+    "caseStudy": "Case study",
+    "visit": "Visit site",
+    "screenshot": "screenshot"
+  },
+  "tools": {
+    "label": "(02)",
+    "title": "Toolbox",
+    "titleAlt": "daily"
+  },
+  "experience": {
+    "label": "(03)",
+    "title": "Experience",
+    "titleAlt": "so far",
+    "watch": "Play demo video",
+    "visit": "Visit site",
+    "close": "Close"
+  },
+  "contact": {
+    "label": "(04) Contact",
+    "title": "Say",
+    "titleAlt": "hello",
+    "copy": "Copy email",
+    "copied": "Copied",
+    "rights": "© 2026 Celia"
+  },
+  "notFound": {
+    "title": "Got",
+    "titleAlt": "lost?",
+    "body": "This page doesn't exist. Head back home.",
+    "home": "Back home"
+  },
+  "liftlog": {
+    "back": "Back to works",
+    "demo": "Live Demo",
+    "github": "Source on GitHub",
+    "roles": "Three roles",
+    "rolesAlt": "Roles",
+    "screens": "Screens",
+    "screensAlt": "tour",
+    "highlights": "Highlights",
+    "highlightsAlt": "under the hood",
+    "stateMachine": "Booking state machine",
+    "flow": "Process",
+    "flowAlt": "spec-driven",
+    "try": "Try it",
+    "tryAlt": "no sign-up",
+    "tryIntro": "No sign-up needed. Log in with any account below to see the full demo data.",
+    "password": "Password",
+    "copy": "Copy",
+    "copied": "Copied",
+    "stack": "Stack",
+    "next": "More works"
+  }
+}
