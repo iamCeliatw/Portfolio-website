@@ -163,8 +163,9 @@ html {
     height: 12px;
     margin: -6px 0 0 -6px;
     border-radius: 50%;
-    background: var(--color-ink);
-    mix-blend-mode: multiply;
+    /* 白點配 difference：淺底上看起來是深色、深色圖上是白色，兩種底都看得到 */
+    background: #fff;
+    mix-blend-mode: difference;
     pointer-events: none;
     transition: scale 0.4s var(--ease-spring);
   }

@@ -3,31 +3,52 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
 
 const QUERY = '(pointer: fine) and (prefers-reduced-motion: no-preference)'
-// 滑過時外框內縮的比例；內縮出來的空間讓邊可以往滑鼠鼓出去
-const INSET = 0.045
+// 滑過時外框內縮的比例（以短邊計）；內縮出來的空間讓外框可以往滑鼠鼓出去
+const INSET = 0.05
+// 鼓起範圍：以短邊計的高斯半徑
+const SPREAD = 0.32
 const STIFFNESS = 0.12
 const DAMPING = 0.72
 
-type Springs = Record<'m' | 'top' | 'right' | 'bottom' | 'left' | 'cx' | 'cy', { v: number; vel: number; to: number }>
+type Key = 'm' | 'amp' | 'px' | 'py'
+type Spring = { v: number; vel: number; to: number }
 
-const rest = () => ({ m: 0, top: 0, right: 0, bottom: 0, left: 0, cx: 0.5, cy: 0.5 })
-
-function framePath(s: ReturnType<typeof rest>, rx: number, ry: number) {
-  const x0 = s.m, x1 = 1 - s.m, y0 = s.m, y1 = 1 - s.m
-  const cx = Math.min(Math.max(s.cx, x0 + rx), x1 - rx)
-  const cy = Math.min(Math.max(s.cy, y0 + ry), y1 - ry)
+// 沿圓角矩形外框取點，每點沿法線往外推，推的量依離滑鼠的距離遞減；整圈一起變形，角落才不會鼓出圓瘤
+function framePath(w: number, h: number, radius: number, s: Record<Key, number>) {
+  const short = Math.min(w, h)
+  const inset = s.m * short
+  const x0 = inset, y0 = inset, x1 = w - inset, y1 = h - inset
+  const r = Math.max(0, Math.min(radius, (x1 - x0) / 2, (y1 - y0) / 2))
+  const pts: [number, number, number, number][] = []
+  const line = (ax: number, ay: number, bx: number, by: number, nx: number, ny: number, n: number) => {
+    for (let i = 0; i < n; i++) pts.push([ax + ((bx - ax) * i) / n, ay + ((by - ay) * i) / n, nx, ny])
+  }
+  const arc = (cx: number, cy: number, a0: number, n: number) => {
+    for (let i = 0; i < n; i++) {
+      const a = a0 + (Math.PI / 2) * (i / n)
+      pts.push([cx + r * Math.cos(a), cy + r * Math.sin(a), Math.cos(a), Math.sin(a)])
+    }
+  }
+  line(x0 + r, y0, x1 - r, y0, 0, -1, 28)
+  arc(x1 - r, y0 + r, -Math.PI / 2, 8)
+  line(x1, y0 + r, x1, y1 - r, 1, 0, 20)
+  arc(x1 - r, y1 - r, 0, 8)
+  line(x1 - r, y1, x0 + r, y1, 0, 1, 28)
+  arc(x0 + r, y1 - r, Math.PI / 2, 8)
+  line(x0, y1 - r, x0, y0 + r, -1, 0, 20)
+  arc(x0 + r, y0 + r, Math.PI, 8)
+  const px = s.px * w, py = s.py * h
+  const sigma2 = 2 * (SPREAD * short) ** 2
+  const reach = s.amp * inset * 1.15
   const f = (n: number) => n.toFixed(4)
-  return [
-    `M${f(x0 + rx)},${f(y0)}`,
-    `Q${f(cx)},${f(y0 - s.top)} ${f(x1 - rx)},${f(y0)}`,
-    `Q${f(x1)},${f(y0)} ${f(x1)},${f(y0 + ry)}`,
-    `Q${f(x1 + s.right)},${f(cy)} ${f(x1)},${f(y1 - ry)}`,
-    `Q${f(x1)},${f(y1)} ${f(x1 - rx)},${f(y1)}`,
-    `Q${f(cx)},${f(y1 + s.bottom)} ${f(x0 + rx)},${f(y1)}`,
-    `Q${f(x0)},${f(y1)} ${f(x0)},${f(y1 - ry)}`,
-    `Q${f(x0 - s.left)},${f(cy)} ${f(x0)},${f(y0 + ry)}`,
-    `Q${f(x0)},${f(y0)} ${f(x0 + rx)},${f(y0)}Z`,
-  ].join(' ')
+  return (
+    pts
+      .map(([x, y, nx, ny], i) => {
+        const d = reach * Math.exp(-((x - px) ** 2 + (y - py) ** 2) / sigma2)
+        return `${i ? 'L' : 'M'}${f((x + nx * d) / w)},${f((y + ny * d) / h)}`
+      })
+      .join(' ') + 'Z'
+  )
 }
 
 type Props = { children: ReactNode; className?: string; radius?: number }
@@ -50,19 +71,19 @@ export function JellyFrame({ children, className = '', radius = 24 }: Props) {
     const wrap = wrapRef.current
     const path = pathRef.current
     if (!enabled || !wrap || !path) return
-    const init = rest()
-    const springs = Object.fromEntries(Object.entries(init).map(([k, v]) => [k, { v, vel: 0, to: v }])) as Springs
+    const rest: Record<Key, number> = { m: 0, amp: 0, px: 0.5, py: 0.5 }
+    const springs = Object.fromEntries(Object.entries(rest).map(([k, v]) => [k, { v, vel: 0, to: v }])) as Record<Key, Spring>
     let raf = 0
-    let rx = 0
-    let ry = 0
-    const measure = () => {
-      const { width, height } = wrap.getBoundingClientRect()
-      rx = width ? Math.min(radius / width, 0.5) : 0
-      ry = height ? Math.min(radius / height, 0.5) : 0
-    }
+    let w = 1
+    let h = 1
     const draw = () => {
-      const s = Object.fromEntries(Object.entries(springs).map(([k, sp]) => [k, sp.v])) as ReturnType<typeof rest>
-      path.setAttribute('d', framePath(s, rx, ry))
+      const s = Object.fromEntries(Object.entries(springs).map(([k, sp]) => [k, sp.v])) as Record<Key, number>
+      path.setAttribute('d', framePath(w, h, radius, s))
+    }
+    const measure = () => {
+      const r = wrap.getBoundingClientRect()
+      w = r.width || 1
+      h = r.height || 1
     }
     const tick = () => {
       let moving = false
@@ -78,23 +99,17 @@ export function JellyFrame({ children, className = '', radius = 24 }: Props) {
     const kick = () => {
       if (!raf) raf = requestAnimationFrame(tick)
     }
-    // 越靠近某條邊，那條邊越往滑鼠鼓；鼓的量上限是內縮的兩倍，曲線頂點剛好碰到原本的外框
-    const bulge = (distance: number) => 2 * INSET * Math.max(0, 1 - distance / 0.6)
     const onMove = (e: PointerEvent) => {
       const r = wrap.getBoundingClientRect()
-      const px = (e.clientX - r.left) / r.width
-      const py = (e.clientY - r.top) / r.height
       springs.m.to = INSET
-      springs.top.to = bulge(py)
-      springs.bottom.to = bulge(1 - py)
-      springs.left.to = bulge(px)
-      springs.right.to = bulge(1 - px)
-      springs.cx.to = px
-      springs.cy.to = py
+      springs.amp.to = 1
+      springs.px.to = (e.clientX - r.left) / r.width
+      springs.py.to = (e.clientY - r.top) / r.height
       kick()
     }
     const onLeave = () => {
-      for (const [k, v] of Object.entries(init)) springs[k as keyof Springs].to = v
+      springs.m.to = rest.m
+      springs.amp.to = rest.amp
       kick()
     }
     measure()
