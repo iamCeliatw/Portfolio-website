@@ -30,3 +30,22 @@ test.describe('減少動態', () => {
     await expect(page.locator('[data-jelly] clipPath')).toHaveCount(0)
   })
 })
+
+test('載入時卡片圖片不會因空的裁切路徑而消失', async ({ page }) => {
+  test.skip(test.info().project.name === 'mobile', '手機不裁切')
+  // 在任何一幀，只要元素已套上 clip-path、但路徑還沒有 d，畫面上就會整塊消失
+  await page.addInitScript(() => {
+    const w = window as unknown as { __emptyClipFrames: number }
+    w.__emptyClipFrames = 0
+    const check = () => {
+      document.querySelectorAll<HTMLElement>('[data-jelly]').forEach((el) => {
+        if (el.style.clipPath && !el.querySelector('clipPath path')?.getAttribute('d')) w.__emptyClipFrames++
+      })
+      requestAnimationFrame(check)
+    }
+    requestAnimationFrame(check)
+  })
+  await page.goto('/')
+  await page.waitForTimeout(1500)
+  expect(await page.evaluate(() => (window as unknown as { __emptyClipFrames: number }).__emptyClipFrames)).toBe(0)
+})

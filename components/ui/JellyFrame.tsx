@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useId, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 
 const QUERY = '(pointer: fine) and (prefers-reduced-motion: no-preference)'
 // 滑過時外框內縮的比例（以短邊計）；內縮出來的空間讓外框可以往滑鼠鼓出去
@@ -67,7 +67,8 @@ export function JellyFrame({ children, className = '', radius = 24 }: Props) {
     return () => mq.removeEventListener('change', update)
   }, [])
 
-  useEffect(() => {
+  // layout effect：clip-path 一套上就要有路徑，否則第一幀整張圖會消失
+  useLayoutEffect(() => {
     const wrap = wrapRef.current
     const path = pathRef.current
     if (!enabled || !wrap || !path) return

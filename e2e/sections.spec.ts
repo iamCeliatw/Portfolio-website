@@ -12,7 +12,7 @@ test('經歷列出兩家公司與王一科技的四件作品', async ({ page }) 
   }
 })
 
-test('桌面應用的影片彈窗可以打開，按 Esc 關閉', async ({ page }) => {
+test('桌面應用的影片彈出視窗可以打開，按 Esc 關閉', async ({ page }) => {
   await page.goto('/')
   await revealAll(page)
   await page.locator('#experience').getByRole('button', { name: /Hydrogen Energy Game/ }).click()

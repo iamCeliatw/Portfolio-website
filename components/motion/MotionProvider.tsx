@@ -10,7 +10,7 @@ export function MotionProvider() {
     let revert: (() => void) | undefined
     let cancelled = false
 
-    // 動畫函式庫延後載入，不進首屏的 JS；手機 LCP 的模擬會把首屏同時下載的 JS 都算進去
+    // 動畫函式庫延後載入，不進第一個畫面的 JS；手機 LCP 的模擬會把同時下載的 JS 都算進去
     Promise.all([import('gsap'), import('gsap/ScrollTrigger'), import('gsap/SplitText'), import('gsap/CustomEase'), import('lenis')]).then(
       ([{ default: gsap }, { ScrollTrigger }, { SplitText }, { CustomEase }, { default: Lenis }]) => {
         if (cancelled) return
