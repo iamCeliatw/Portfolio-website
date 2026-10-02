@@ -4,6 +4,7 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { fontVariables } from '@/app/fonts'
+import { Nav } from '@/components/layout/Nav'
 import '../globals.css'
 
 const htmlLang = { zh: 'zh-Hant-TW', en: 'en' } as const
@@ -20,7 +21,10 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   return (
     <html lang={htmlLang[locale]} className={fontVariables}>
       <body className="font-sans text-ink antialiased">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <Nav />
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   )
