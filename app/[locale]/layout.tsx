@@ -5,6 +5,7 @@ import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { fontVariables } from '@/app/fonts'
 import { Nav } from '@/components/layout/Nav'
+import { Cursor } from '@/components/motion/Cursor'
 import { MotionProvider } from '@/components/motion/MotionProvider'
 import 'lenis/dist/lenis.css'
 import '../globals.css'
@@ -27,6 +28,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           <Nav />
           {children}
           <MotionProvider />
+          <Cursor />
         </NextIntlClientProvider>
       </body>
     </html>
