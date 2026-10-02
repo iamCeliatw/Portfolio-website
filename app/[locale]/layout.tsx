@@ -1,7 +1,8 @@
+import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
-import { setRequestLocale } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { fontVariables } from '@/app/fonts'
 import { Nav } from '@/components/layout/Nav'
@@ -11,6 +12,19 @@ import 'lenis/dist/lenis.css'
 import '../globals.css'
 
 const htmlLang = { zh: 'zh-Hant-TW', en: 'en' } as const
+const site = 'https://celia-portfolio-website.vercel.app'
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'meta' })
+  return {
+    metadataBase: new URL(site),
+    title: t('title'),
+    description: t('description'),
+    alternates: { canonical: locale === 'zh' ? '/' : '/en', languages: { 'zh-Hant-TW': '/', en: '/en' } },
+    openGraph: { type: 'website', siteName: "Celia's Portfolio", locale: locale === 'zh' ? 'zh_TW' : 'en_US' },
+  }
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))

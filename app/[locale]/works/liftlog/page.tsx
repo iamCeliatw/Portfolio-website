@@ -12,7 +12,14 @@ type Params = { params: Promise<{ locale: string }> }
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'meta' })
-  return { title: t('liftlogTitle'), description: t('liftlogDescription') }
+  return {
+    title: t('liftlogTitle'),
+    description: t('liftlogDescription'),
+    alternates: {
+      canonical: locale === 'zh' ? '/works/liftlog' : '/en/works/liftlog',
+      languages: { 'zh-Hant-TW': '/works/liftlog', en: '/en/works/liftlog' },
+    },
+  }
 }
 
 export default async function LiftlogPage({ params }: Params) {
