@@ -7,7 +7,8 @@ const pages = [['home-zh', '/'], ['home-en', '/en'], ['liftlog-zh', '/works/lift
 const viewports = [['desktop', { width: 1440, height: 900 }], ['mobile', { width: 390, height: 844 }]]
 
 mkdirSync(`shots/${round}`, { recursive: true })
-const browser = await chromium.launch()
+// 無頭瀏覽器預設是軟體算繪，畫不出 Plasma 的玻璃面板
+const browser = await chromium.launch({ args: ['--use-angle=metal', '--enable-gpu'] })
 for (const [device, viewport] of viewports) {
   const context = await browser.newContext({ viewport, deviceScaleFactor: 1, hasTouch: device === 'mobile', isMobile: device === 'mobile' })
   const page = await context.newPage()

@@ -10,7 +10,15 @@ export default defineConfig({
     timeout: 300_000,
   },
   projects: [
-    { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } } },
+    {
+      name: 'desktop',
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1440, height: 900 },
+        // 預設的軟體算繪跑全視窗 WebGL 會拖垮頁面，桌機改用 GPU
+        launchOptions: { args: ['--use-angle=metal', '--enable-gpu'] },
+      },
+    },
     { name: 'mobile', use: { ...devices['Pixel 7'] } },
   ],
 })
