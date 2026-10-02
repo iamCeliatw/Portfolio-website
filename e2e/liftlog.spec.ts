@@ -1,7 +1,9 @@
 import { expect, test } from '@playwright/test'
+import { revealAll } from './helpers'
 
 test('案例頁有大標、數字列、六張截圖與三組 demo 帳號', async ({ page }) => {
   await page.goto('/works/liftlog')
+  await revealAll(page)
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('LIFTLOG')
   await expect(page.getByText('106', { exact: true })).toBeVisible()
   await expect(page.locator('figure img')).toHaveCount(6)
