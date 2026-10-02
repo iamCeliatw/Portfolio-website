@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { jobs } from '@/content/experience'
 import type { Locale } from '@/content/types'
+import { JellyFrame } from '@/components/ui/JellyFrame'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { VideoThumb } from './VideoThumb'
 
@@ -38,9 +39,9 @@ export async function ExperienceSection() {
                         <VideoThumb title={w.title} summary={w.summary[locale]} image={w.image} video={w.video} watchLabel={t('watch')} closeLabel={t('close')} />
                       ) : (
                         <a href={w.href} target="_blank" rel="noopener noreferrer" className="spring-card block">
-                          <span className="relative block aspect-[4/3] overflow-hidden rounded-2xl">
+                          <JellyFrame radius={16} className="aspect-[4/3] overflow-hidden rounded-2xl">
                             <Image src={w.image} alt="" fill sizes="(min-width: 1024px) 25vw, 50vw" className="zoom-img object-cover object-top" />
-                          </span>
+                          </JellyFrame>
                           <span className="mt-3 block font-bold">{w.title}</span>
                           <span className="mt-1 block text-sm leading-relaxed text-mute">{w.summary[locale]}</span>
                           <span className="sr-only">{t('visit')}</span>

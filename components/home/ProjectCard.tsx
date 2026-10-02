@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import type { Project } from '@/content/projects'
 import type { Locale } from '@/content/types'
+import { JellyFrame } from '@/components/ui/JellyFrame'
 import { Link } from '@/i18n/navigation'
 
 type Props = { project: Project; locale: Locale; labels: { caseStudy: string; visit: string; screenshot: string } }
@@ -9,7 +10,7 @@ export function ProjectCard({ project, locale, labels }: Props) {
   const external = project.href.startsWith('http')
   const inner = (
     <>
-      <span className={`relative block overflow-hidden rounded-3xl ${project.featured ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
+      <JellyFrame className={`overflow-hidden rounded-3xl ${project.featured ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
         <Image
           src={project.image}
           alt={`${project.title} ${labels.screenshot}`}
@@ -17,7 +18,7 @@ export function ProjectCard({ project, locale, labels }: Props) {
           sizes={project.featured ? '(min-width: 1024px) 66vw, 100vw' : '(min-width: 1024px) 33vw, 100vw'}
           className="zoom-img object-cover object-top"
         />
-      </span>
+      </JellyFrame>
       <span className="mt-4 flex items-baseline justify-between gap-4">
         <span className={`font-bold ${project.featured ? 'text-[clamp(28px,3vw,40px)]' : 'text-2xl'}`}>{project.title}</span>
         <span className="shrink-0 text-sm text-mute">{external ? `${labels.visit} ↗` : `${labels.caseStudy} →`}</span>
