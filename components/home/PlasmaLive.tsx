@@ -8,7 +8,7 @@ type Props = { panels: StagePanel[]; hello: string; bounds: RefObject<HTMLDivEle
 
 export default function PlasmaLive({ panels, hello, bounds }: Props) {
   return (
-    <PlasmaProvider mood="tidal" theme="dark" viscosity={0.5} grid={24}>
+    <PlasmaProvider mood={{ colors: ["#140c09", "#5a2a1c", "#e07a4a"], blend: 40, spring: { stiffness: 170, damping: 16 } }} theme="dark" viscosity={0.5} grid={24}>
       {panels.map((panel) => (
         <Plasma key={panel.id} draggable bounds={bounds} padding={24} className={`absolute text-white ${panel.className}`}>
           <PanelBody panel={panel} />

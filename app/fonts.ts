@@ -1,8 +1,7 @@
-import { Noto_Sans_TC, Noto_Serif_TC, Schibsted_Grotesk, Zilla_Slab } from 'next/font/google'
+import { Schibsted_Grotesk, Zilla_Slab } from 'next/font/google'
 
+// 中文用系統字型（蘋方、微軟正黑體、思源黑體）：Noto TC 網路字型拆成數十個字型檔，手機首屏要多下載 1.4MB
 const grotesk = Schibsted_Grotesk({ subsets: ['latin'], weight: ['400', '500', '700', '800'], variable: '--font-grotesk' })
-const slab = Zilla_Slab({ subsets: ['latin'], weight: ['300'], style: ['normal', 'italic'], variable: '--font-slab' })
-const notoSans = Noto_Sans_TC({ weight: ['400', '500', '700'], variable: '--font-noto-sans', preload: false })
-const notoSerif = Noto_Serif_TC({ weight: ['300', '500'], variable: '--font-noto-serif', preload: false })
+const slab = Zilla_Slab({ subsets: ['latin'], weight: ['300'], style: ['normal', 'italic'], variable: '--font-slab', preload: false })
 
-export const fontVariables = [grotesk, slab, notoSans, notoSerif].map((font) => font.variable).join(' ')
+export const fontVariables = [grotesk, slab].map((font) => font.variable).join(' ')

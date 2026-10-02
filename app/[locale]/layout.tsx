@@ -1,3 +1,4 @@
+import { site } from '@/lib/site'
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { notFound } from 'next/navigation'
@@ -12,7 +13,6 @@ import 'lenis/dist/lenis.css'
 import '../globals.css'
 
 const htmlLang = { zh: 'zh-Hant-TW', en: 'en' } as const
-const site = 'https://celia-portfolio-website.vercel.app'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
@@ -38,7 +38,8 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   return (
     <html lang={htmlLang[locale]} className={fontVariables}>
       <body className="font-sans text-ink antialiased">
-        <NextIntlClientProvider>
+        {/* 瀏覽器端元件不讀翻譯，文字由伺服器元件以 props 傳入；不送 messages 可省下格式化程式與 HTML 內的翻譯資料 */}
+        <NextIntlClientProvider messages={null}>
           <Nav />
           {children}
           <MotionProvider />

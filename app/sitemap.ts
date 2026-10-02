@@ -1,6 +1,6 @@
+import { site } from '@/lib/site'
 import type { MetadataRoute } from 'next'
 
-const site = 'https://celia-portfolio-website.vercel.app'
 const paths = ['', '/works/liftlog']
 
 export default function sitemap(): MetadataRoute.Sitemap {

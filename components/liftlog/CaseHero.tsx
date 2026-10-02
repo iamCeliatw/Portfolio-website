@@ -22,7 +22,7 @@ export async function CaseHero() {
       </div>
       <dl className="mt-[clamp(64px,8vw,112px)] grid grid-cols-2 border-t border-ink sm:grid-cols-3 lg:grid-cols-5">
         {liftlog.stats.map((s) => (
-          <div key={s.value + s.label.en} data-fade className="border-b border-ink py-6 pr-4">
+          <div key={s.value + s.label.en} className="border-b border-ink py-6 pr-4">
             <dt className="sr-only">{s.label[locale]}</dt>
             <dd>
               <span className="block text-[clamp(48px,5vw,80px)] font-extrabold leading-none tracking-[-.04em]">{s.value}</span>

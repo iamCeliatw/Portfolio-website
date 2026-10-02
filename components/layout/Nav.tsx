@@ -17,7 +17,7 @@ export async function Nav() {
             {t(id)}
           </Link>
         ))}
-        <LocaleSwitch />
+        <LocaleSwitch label={t('switchLabel')} text={t('switchTo')} />
       </nav>
     </header>
   )

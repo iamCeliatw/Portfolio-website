@@ -56,7 +56,7 @@ export function PlasmaStage({ panels, hello, aria }: Props) {
       <div
         ref={windowRef}
         data-plasma-stage={live ? 'live' : 'static'}
-        className={`stage-window relative h-[clamp(460px,46vw,680px)] rounded-[32px] ${live ? '' : 'fade-in overflow-hidden [animation-delay:.4s]'}`}
+        className={`stage-window relative h-[clamp(460px,46vw,680px)] rounded-[32px] ${live ? '' : 'fade-in overflow-hidden bg-[var(--field-base)] [animation-delay:.4s]'}`}
       >
         {live ? <PlasmaLive panels={panels} hello={hello} bounds={windowRef} /> : <StaticPanels panels={panels} hello={hello} />}
       </div>
