@@ -18,7 +18,7 @@ export type Job = {
 
 export const jobs: Job[] = [
   {
-    company: { zh: '遠通電收', en: 'Far Eastern Electronic Toll Collection' },
+    company: { zh: '遠創智慧', en: 'FETC International' },
     role: { zh: '前端工程師，2026 年起兼任 iOS', en: 'Frontend Engineer, also iOS since 2026' },
     period: { zh: '2025 ～ 至今', en: '2025 to present' },
     highlights: [
@@ -41,7 +41,7 @@ export const jobs: Job[] = [
     ],
   },
   {
-    company: { zh: '王一科技', en: 'Wang Yi Technology' },
+    company: { zh: '王一互動科技', en: 'King One Interactive Technology' },
     role: { zh: '前端工程師', en: 'Frontend Engineer' },
     works: [
       {

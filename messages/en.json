@@ -16,7 +16,11 @@
   },
   "hero": {
     "eyebrow": "(00) Frontend Engineer / 前端工程師",
-    "words": ["websites.", "web apps.", "3D worlds."],
+    "words": [
+      "websites.",
+      "web apps.",
+      "3D worlds."
+    ],
     "intro": "I build websites, full-stack apps and 3D experiences where every click answers back.",
     "scroll": "Scroll"
   },
@@ -24,7 +28,7 @@
     "aria": "Featured work",
     "hello": "Hi, I'm Celia",
     "featured": "(01) Featured",
-    "previous": "Wang Yi Tech",
+    "previous": "King One Interactive",
     "side": "Side project",
     "tests": "21 E2E specs"
   },
@@ -37,7 +41,11 @@
     "visit": "Visit site",
     "screenshot": "screenshot"
   },
-  "tools": { "label": "(02)", "title": "Toolbox", "titleAlt": "daily" },
+  "tools": {
+    "label": "(02)",
+    "title": "Toolbox",
+    "titleAlt": "daily"
+  },
   "experience": {
     "label": "(03)",
     "title": "Experience",

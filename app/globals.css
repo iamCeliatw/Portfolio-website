@@ -13,10 +13,10 @@
 
 :root {
   --gutter: clamp(16px, 4vw, 56px);
-  --field-base: #140c09;
-  --field-1: #5a2a1c;
-  --field-2: #e07a4a;
-  --field-3: #5a2a1c;
+  --field-base: #0d0c0b;
+  --field-1: #2b2723;
+  --field-2: #8a7f73;
+  --field-3: #2b2723;
 }
 
 /* body 不能有背景，否則會蓋住 z-index -1 的 Plasma 畫布 */

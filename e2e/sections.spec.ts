@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test'
 import { revealAll } from './helpers'
 
-test('經歷列出兩家公司與王一科技的四件作品', async ({ page }) => {
+test('經歷列出兩家公司與王一互動科技的四件作品', async ({ page }) => {
   await page.goto('/')
   await revealAll(page)
   const exp = page.locator('#experience')
-  await expect(exp.getByRole('heading', { name: '遠通電收' })).toBeVisible()
-  await expect(exp.getByRole('heading', { name: '王一科技' })).toBeVisible()
+  await expect(exp.getByRole('heading', { name: '遠創智慧' })).toBeVisible()
+  await expect(exp.getByRole('heading', { name: '王一互動科技' })).toBeVisible()
   for (const title of ["L'AiR Journal", 'China Airlines Online Museum', 'Hydrogen Energy Game', 'Vyin AI Chat Bot']) {
     await expect(exp.getByText(title, { exact: true })).toBeVisible()
   }
