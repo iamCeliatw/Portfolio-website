@@ -16,8 +16,12 @@
   },
   "hero": {
     "eyebrow": "(00) 前端工程師 / Frontend Engineer",
-    "words": ["websites.", "web apps.", "3D worlds."],
-    "intro": "我做網站、全端應用與 3D 體驗，讓每一次點擊都有回饋。",
+    "words": [
+      "websites.",
+      "web apps.",
+      "3D worlds."
+    ],
+    "intro": "我做網站、全端應用與 3D 體驗，\n讓每一次點擊都有回饋。",
     "scroll": "往下捲動"
   },
   "stage": {
@@ -37,7 +41,11 @@
     "visit": "前往網站",
     "screenshot": "網站截圖"
   },
-  "tools": { "label": "(02)", "title": "工具箱", "titleAlt": "Toolbox" },
+  "tools": {
+    "label": "(02)",
+    "title": "工具箱",
+    "titleAlt": "Toolbox"
+  },
   "experience": {
     "label": "(03)",
     "title": "Experience",

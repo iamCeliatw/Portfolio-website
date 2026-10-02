@@ -19,7 +19,7 @@ export async function Hero() {
         </span>
       </h1>
       <div className="mt-10 grid items-end gap-8 md:grid-cols-2">
-        <p className="fade-in max-w-[22ch] font-serif text-[clamp(24px,2.4vw,34px)] font-light leading-[1.3] [animation-delay:.6s]">
+        <p className="fade-in max-w-[34ch] whitespace-pre-line font-serif text-[clamp(24px,2.4vw,34px)] font-light leading-[1.3] [animation-delay:.6s]">
           {t('intro')}
         </p>
         <p className="fade-in text-sm text-mute md:justify-self-end [animation-delay:.7s]">{t('scroll')} ↓</p>

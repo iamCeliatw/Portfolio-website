@@ -12,7 +12,7 @@ export async function CaseHero() {
       <h1 className="mt-4 text-[clamp(72px,14vw,220px)] font-extrabold leading-[.85] tracking-[-.05em]">
         <span className="line-mask"><span className="line-rise [animation-delay:.15s]">LIFTLOG</span></span>
       </h1>
-      <p className="fade-in mt-8 max-w-[24ch] font-serif text-[clamp(26px,2.8vw,40px)] font-light italic leading-[1.25] [animation-delay:.5s]">
+      <p className="fade-in mt-8 max-w-[20em] font-serif text-[clamp(26px,2.8vw,40px)] font-light italic leading-[1.25] [animation-delay:.5s]">
         {liftlog.tagline[locale]}
       </p>
       <p className="fade-in mt-6 max-w-[56ch] text-[17px] leading-relaxed text-[#3a3a3f] [animation-delay:.6s]">{liftlog.intro[locale]}</p>
