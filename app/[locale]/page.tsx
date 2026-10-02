@@ -1,7 +1,10 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { ContactSection } from '@/components/home/ContactSection'
+import { ExperienceSection } from '@/components/home/ExperienceSection'
 import { Hero } from '@/components/home/Hero'
 import { PlasmaStage } from '@/components/home/PlasmaStage'
 import type { StagePanel } from '@/components/home/StagePanels'
+import { ToolsSection } from '@/components/home/ToolsSection'
 import { WorksSection } from '@/components/home/WorksSection'
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -21,6 +24,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Hero />
       <PlasmaStage panels={panels} hello={t('hello')} aria={t('aria')} />
       <WorksSection />
+      <ToolsSection />
+      <ExperienceSection />
+      <ContactSection />
     </main>
   )
 }
