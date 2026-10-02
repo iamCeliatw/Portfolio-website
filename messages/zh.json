@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "title": "Celia｜前端工程師",
+    "description": "Celia 的作品集：網站、全端應用與 3D 體驗。",
+    "liftlogTitle": "LIFTLOG 案例｜Celia",
+    "liftlogDescription": "LIFTLOG 健身追蹤平台的開發案例：三種角色、預約狀態機與規格驅動開發。"
+  },
+  "nav": {
+    "aria": "主選單",
+    "works": "作品",
+    "tools": "工具箱",
+    "experience": "經歷",
+    "contact": "聯絡",
+    "switchTo": "EN",
+    "switchLabel": "Switch to English"
+  },
+  "hero": {
+    "eyebrow": "(00) 前端工程師 / Frontend Engineer",
+    "words": ["websites.", "web apps.", "3D worlds."],
+    "intro": "我做網站、全端應用與 3D 體驗，讓每一次點擊都有回饋。",
+    "scroll": "往下捲動"
+  },
+  "stage": {
+    "aria": "精選作品",
+    "hello": "嗨，我是 Celia",
+    "featured": "(01) 主打作品",
+    "previous": "王一科技",
+    "side": "個人作品",
+    "tests": "21 支 E2E 測試"
+  },
+  "works": {
+    "label": "(01)",
+    "title": "Works",
+    "titleAlt": "作品",
+    "intro": "個人作品，從全端平台到手作品牌。",
+    "caseStudy": "看案例",
+    "visit": "前往網站",
+    "screenshot": "網站截圖"
+  },
+  "tools": { "label": "(02)", "title": "工具箱", "titleAlt": "Toolbox" },
+  "experience": {
+    "label": "(03)",
+    "title": "Experience",
+    "titleAlt": "經歷",
+    "watch": "播放示範影片",
+    "visit": "前往網站",
+    "close": "關閉"
+  },
+  "contact": {
+    "label": "(04) 聯絡",
+    "title": "Say",
+    "titleAlt": "hello",
+    "copy": "複製 email",
+    "copied": "已複製",
+    "rights": "© 2026 Celia"
+  },
+  "notFound": {
+    "title": "好像",
+    "titleAlt": "迷路了",
+    "body": "這個頁面不存在，回首頁看看吧。",
+    "home": "回首頁"
+  },
+  "liftlog": {
+    "back": "回作品",
+    "demo": "Live Demo",
+    "github": "GitHub 原始碼",
+    "roles": "三種角色",
+    "rolesAlt": "Roles",
+    "screens": "畫面導覽",
+    "screensAlt": "Screens",
+    "highlights": "技術亮點",
+    "highlightsAlt": "Highlights",
+    "stateMachine": "預約狀態機",
+    "flow": "開發流程",
+    "flowAlt": "Process",
+    "try": "試用",
+    "tryAlt": "Try it",
+    "tryIntro": "免註冊，用下面的帳號登入就能看到完整示範資料。",
+    "password": "密碼",
+    "copy": "複製",
+    "copied": "已複製",
+    "stack": "技術棧",
+    "next": "看其他作品"
+  }
+}
